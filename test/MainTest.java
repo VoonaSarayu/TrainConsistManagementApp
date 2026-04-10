@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -161,5 +162,34 @@ class MainTest {
         assertEquals(totalLoop, totalStream);  // both should give same result
         assertTrue(loopTime > 0);
         assertTrue(streamTime > 0);
+=======
+import static org.junit.jupiter.api.Assertions.*;
+
+class GoodsBogieTest {
+
+    @Test
+    void testCargo_SafeAssignment() {
+        Main.GoodsBogie bogie = new Main.GoodsBogie("Cylindrical");
+        bogie.assignCargo("Petroleum");
+
+        assertEquals("Petroleum", bogie.cargo);
+    }
+
+    @Test
+    void testCargo_UnsafeAssignmentHandled() {
+        Main.GoodsBogie bogie = new Main.GoodsBogie("Rectangular");
+        bogie.assignCargo("Petroleum");
+
+        assertNull(bogie.cargo);
+    }
+
+    @Test
+    void testCargo_ProgramContinuesAfterException() {
+        Main.GoodsBogie bogie = new Main.GoodsBogie("Rectangular");
+        bogie.assignCargo("Petroleum");
+
+        // Program should not crash
+        assertTrue(true);
+>>>>>>> 71adc05 (UC15)
     }
 }
