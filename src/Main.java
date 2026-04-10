@@ -1,5 +1,6 @@
-public class Main {
+import java.util.Arrays;
 
+public class Main {
     // Linear Search Method
     public static boolean searchBogie(String[] bogieIds, String searchId) {
         for (String id : bogieIds) {
@@ -8,7 +9,7 @@ public class Main {
             }
         }
         return false;
-    }
+    // Method to sort bogie name
 
     public static void main(String[] args) {
 
@@ -37,5 +38,6 @@ public class Main {
         }
 
         System.out.println("\nUC18 search completed....");
+
     }
 }
