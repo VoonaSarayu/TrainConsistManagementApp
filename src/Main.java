@@ -1,32 +1,7 @@
 import java.util.Arrays;
 
 public class Main {
-
-    // ✅ Binary Search Method
-    public static boolean binarySearch(String[] bogieIds, String key) {
-
-        // Precondition: sort array
-        Arrays.sort(bogieIds);
-
-        int left = 0;
-        int right = bogieIds.length - 1;
-
-        while (left <= right) {
-            int mid = (left + right) / 2;
-
-            int compare = bogieIds[mid].compareTo(key);
-
-            if (compare == 0) {
-                return true; // found
-            } else if (compare < 0) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-
-        return false; // not found
-    }
+    // Linear Search Method
 
     public static void main(String[] args) {
 
@@ -57,6 +32,6 @@ public class Main {
             System.out.println("\nBogie " + key + " NOT found.");
         }
 
-        System.out.println("\nUC19 search completed...");
+
     }
 }
