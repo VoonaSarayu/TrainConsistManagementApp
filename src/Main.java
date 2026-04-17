@@ -1,47 +1,41 @@
+public class Main {
 
-import java.util.*;
+    // Search method with exception handling
+    public static boolean search(String[] bogieIds, String key) {
 
-public class Main{
+        // Fail-fast validation
+        if (bogieIds.length == 0) {
+            throw new RuntimeException("No bogies available in train.");
+        }
 
+        // Linear search
+        for (String id : bogieIds) {
+            if (id.equals(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // MAIN METHOD (required for Run button)
     public static void main(String[] args) {
 
-        System.out.println("======================================");
-        System.out.println(" UC20 - Exception Handling in Search ");
-        System.out.println("======================================");
+        System.out.println("===== UC20 Exception Handling =====");
 
-        // Create bogie array (empty train scenario)
-        String[] bogieIds = {};
-
-        // Search key
-        String searchId = "BG101";
+        String[] bogieIds = {};  // empty case
+        String searchKey = "BG101";
 
         try {
-            // FAIL-FAST VALIDATION
-            if (bogieIds.length == 0) {
-                throw new RuntimeException("No bogies available in train. Search cannot be performed.");
-            }
+            boolean result = search(bogieIds, searchKey);
 
-            // SEARCH LOGIC
-            boolean found = false;
-
-            for (String id : bogieIds) {
-                if (id.equals(searchId)) {
-                    found = true;
-                    break;
-                }
-            }
-
-            // Display result
-            if (found) {
-                System.out.println("Bogie " + searchId + " found.");
+            if (result) {
+                System.out.println("Bogie " + searchKey + " FOUND");
             } else {
-                System.out.println("Bogie " + searchId + " NOT found.");
+                System.out.println("Bogie " + searchKey + " NOT FOUND");
             }
 
         } catch (RuntimeException e) {
             System.out.println("Exception: " + e.getMessage());
         }
-
-        System.out.println("\nUC20 execution completed...");
     }
 }

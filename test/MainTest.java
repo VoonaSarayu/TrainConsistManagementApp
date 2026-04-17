@@ -1,53 +1,35 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest{
+class MainTest {
 
-    // Helper method
-    boolean search(String[] bogieIds, String key) {
-        if (bogieIds.length == 0) {
-            throw new RuntimeException("No bogies available in train. Search cannot be performed.");
-        }
-
-        for (String id : bogieIds) {
-            if (id.equals(key)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    // ✅ Test 1: Exception when array is empty
     @Test
     void testSearch_ThrowsExceptionWhenEmpty() {
         String[] bogies = {};
         assertThrows(RuntimeException.class, () -> {
-            search(bogies, "BG101");
+            Main.search(bogies, "BG101");
         });
     }
 
+    // ✅ Test 2: Bogie found
     @Test
-    void testSearch_AllowsSearchWhenDataExists() {
-        String[] bogies = {"BG101", "BG205"};
-        assertDoesNotThrow(() -> {
-            search(bogies, "BG101");
-        });
+    void testSearch_BogieFound() {
+        String[] bogies = {"BG101", "BG205", "BG309"};
+        assertTrue(Main.search(bogies, "BG101"));
     }
 
+    // ✅ Test 3: Bogie not found
     @Test
-    void testSearch_BogieFoundAfterValidation() {
-        String[] bogies = {"BG101", "BG205"};
-        assertTrue(search(bogies, "BG101"));
+    void testSearch_BogieNotFound() {
+        String[] bogies = {"BG101", "BG205", "BG309"};
+        assertFalse(Main.search(bogies, "BG999"));
     }
 
+    // ✅ Test 4: Single element case
     @Test
-    void testSearch_BogieNotFoundAfterValidation() {
-        String[] bogies = {"BG101", "BG205"};
-        assertFalse(search(bogies, "BG999"));
-    }
-
-    @Test
-    void testSearch_SingleElementValidCase() {
+    void testSearch_SingleElement() {
         String[] bogies = {"BG101"};
-        assertTrue(search(bogies, "BG101"));
+        assertTrue(Main.search(bogies, "BG101"));
     }
 }
